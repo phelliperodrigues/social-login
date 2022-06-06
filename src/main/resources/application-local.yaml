@@ -1,0 +1,47 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: social-login
+  datasource:
+    url: jdbc:postgresql://localhost:5432/social_login
+    username: pg
+    password: secret
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+        ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    database: postgresql
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            redirect-uri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - email
+              - profile
+          github:
+            client-id: ${GITHUB_CLIENT_ID}
+            client-secret: ${GITHUB_CLIENT_SECRET}
+            redirect-uri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - user:email
+              - user:profile
+app:
+  auth:
+    token-secret:
+      token-expiration-m-sec: 864000000
+  cors:
+    allowed-origins:
+      - http://localhost:3000
+  oauth2:
+    - authorized-redirect-uri:3000/oauth2/redirect
+    - myandroidapp://oauth2/redirect
+    - myiosapp://oauth2/redirect
