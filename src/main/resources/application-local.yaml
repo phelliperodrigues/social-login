@@ -11,11 +11,13 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-        ddl-auto: none
+      ddl-auto: none
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     database: postgresql
+  liquibase:
+    change-log: classpath:db/changelog-include-all.yml
   security:
     oauth2:
       client:

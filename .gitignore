@@ -32,4 +32,3 @@ build/
 ### VS Code ###
 .vscode/
 /local.env
-/src/main/java/dev/phellipe/springsocial/infrastructure/
